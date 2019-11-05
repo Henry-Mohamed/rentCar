@@ -1,0 +1,55 @@
+
+*{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+	
+}
+body{
+	background-color: #eee;
+	margin:20px;
+	background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+	
+	
+
+}
+.carimage {
+	height: 20%;
+	width: 20%;
+	border-radius: 10px;
+	margin-right: 50px;
+}
+.cardiv{
+background-color: #d6e6ff;
+padding: 10px;
+border-radius: 10px;
+margin: 10px;
+display: flex;
+justify-content: center;
+}
+#cars{
+	width: 40%
+
+}
+.popuptext{
+background-color: #d6e6ff;
+padding: 10px;
+border-radius: 10px;
+margin: 10px;
+width: 40%
+}
+#carModel{
+	font-family: monospace;
+	margin-right: 10px
+}
+.container{
+	display :flex;
+	padding-left:300px ; 
+}
+.imagecar{
+	width: 900px;
+	height :250px;
+	border-radius: 20px;
+	margin-bottom: 40px;
+	border: 5px solid #eee;
+}

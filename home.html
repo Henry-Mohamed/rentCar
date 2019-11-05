@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Rent a Car</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+
+
+/* The actual popup */
+.popuptext {
+  visibility: hidden;
+  height: 500px;
+  width:200px;
+  background-color: blue;
+
+}
+
+
+/* Toggle this class - hide and show the popup */
+.show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+</style>
+	 <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+	<script type="text/javascript" src="car.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+   
+</head>
+<body >
+<center>
+<img  class ='imagecar' src="car.jpg">
+<div class='container'>
+<div  id="cars" ></div>
+ <div class="popuptext" id="myPopup"></div>
+
+</div>
+</center>
+<script>
+	$(document).ready(function(){
+        var $div1 = $('#cars');
+        $div1.html('');
+       for (var i = 0; i < cars.length; i++) {
+          var car = cars[i];
+          var $img= $('<img  class="carimage"  src="'+car.image+'">')
+          var $car = $('<div class ="cardiv" id="'+i+'"onclick="myFunction('+i+')"></div>');
+         
+        	var $mani= $('<h4 id="carMani"> Manufacturer     ' + car.manufacturer+'</h4>');
+        	var $module= $('<h4 id="carModel"> Module '+ car.module+'</h4>');
+        	var $price= $('<h4 id="carprice"> Price  '+ car.price+'</h4>');
+        	var $avai= $('<h4 id="caravai"> availability  '+ car.availability+'</h4>');
+        	
+          $car.append( $img,$mani,$module,$price,$avai );
+          $div1.append($car);
+          
+        } 
+           
+      });
+	
+	
+</script>
+<script>
+function myFunction(i) {
+	var $details=$('<div></div>');
+  var $popup = document.getElementById("myPopup");
+  var car = cars[i];
+  var $img1= $('<img src="'+car.image+'">');
+  
+  
+ $popup.innerHTML = "";
+ $details.append($img1)
+ $popup.append($details);
+  $popup.classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
