@@ -39,4 +39,10 @@ var returnCar = function(){
 		this.availability = true;
 	}
 }
-     
+function rentaCar(i){
+	cars[i].availability=false;
+}    
+function returnaCar(i){
+	cars[i].availability=true;
+}    
+
