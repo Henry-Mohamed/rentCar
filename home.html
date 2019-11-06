@@ -6,20 +6,17 @@
 	<style>
 
 
-/* The actual popup */
+
 .popuptext {
   visibility: hidden;
   height: 500px;
   width:200px;
-  background-color: blue;
+
 
 }
 
-
-/* Toggle this class - hide and show the popup */
 .show {
   visibility: visible;
-  -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
 }
 
@@ -34,7 +31,19 @@
 </head>
 <body >
 <center>
-<img  class ='imagecar' src="car.jpg">
+<img  class ='imagecar' src="car.png">
+<div class="addcar">
+	
+  <input type="text"  class="item1addcar" placeholder=" Manufacturer" id="maniinput">
+  <input type="text" class="item2addcar" placeholder=" Module" id="moduleinput">
+  <input type="text" class="item3addcar" placeholder=" Description" id="descinput">
+  <input type="text" class="item4addcar" placeholder=" Price" id="priceinput">
+  <input type="text" class="item5addcar" placeholder=" Image" id="imaginput">
+  
+
+
+<button  class="item6addcar" onclick="addfunction()" >Add Car</button>
+</div>
 <div class='container'>
 <div  id="cars" ></div>
  <div class="popuptext" id="myPopup"></div>
@@ -42,20 +51,21 @@
 </div>
 </center>
 <script>
+
 	$(document).ready(function(){
         var $div1 = $('#cars');
         $div1.html('');
-       for (var i = 0; i < cars.length; i++) {
+       for (var i = cars.length-1; i >= 0; i--) {
           var car = cars[i];
-          var $img= $('<img  class="carimage"  src="'+car.image+'">')
+          var $img= $('<img  id="carimage"  src="'+car.image+'">')
           var $car = $('<div class ="cardiv" id="'+i+'"onclick="myFunction('+i+')"></div>');
          
-        	var $mani= $('<h4 id="carMani"> Manufacturer     ' + car.manufacturer+'</h4>');
-        	var $module= $('<h4 id="carModel"> Module '+ car.module+'</h4>');
-        	var $price= $('<h4 id="carprice"> Price  '+ car.price+'</h4>');
-        	var $avai= $('<h4 id="caravai"> availability  '+ car.availability+'</h4>');
+        	var $mani= $('<h4 id="carMani"> Manufacturer   :  ' + car.manufacturer+'</h4>');
+        	var $module= $('<h4 id="carModel"> Module : '+ car.module+'</h4>');
+        	var $price= $('<h4 id="carprice"> Price  : '+ car.price+'</h4>');
+        	var $avai= $('<h4 id="caravai"> availability : '+ car.availability+'</h4>');
         	
-          $car.append( $img,$mani,$module,$price,$avai );
+          $car.append( $img,$mani,$module,$price,$avai);
           $div1.append($car);
           
         } 
@@ -66,18 +76,128 @@
 </script>
 <script>
 function myFunction(i) {
-	var $details=$('<div></div>');
+	//var $details=$('<div></div>');
+	var varavail= '';
+	if(cars[i].availability===true){
+		varavail='Rent';
+
+	}else{
+		varavail='Return';
+	}
   var $popup = document.getElementById("myPopup");
   var car = cars[i];
-  var $img1= $('<img src="'+car.image+'">');
-  
-  
- $popup.innerHTML = "";
- $details.append($img1)
- $popup.append($details);
+  var $img1= $('<img id="bigimage" src="'+car.image+'">');
+  var $mani= $('<h4 id="carMani1"> Manufacturer    : ' + car.manufacturer+'</h4>');
+  var $module= $('<h4 id="carModel1"> Module : '+ car.module+'</h4>');
+  var $price= $('<h4 id="carprice1"> Price  : '+ car.price+'</h4>');
+  var $avai= $('<h4 id="caravai1"> availability  : '+ car.availability+'</h4>');
+  var $des= $('<h4 id="cardes1"> description : '+ car.description+'</h4>');
+  var $btn = $('<button id ="rentbutton" onclick="FunctionRent('+i+')">'+varavail+'</button>')
+  $popup.innerHTML = "";
+ 
+ //$details.append($img1,$mani,$module,$price,$avai,$des,$btn)
+ //$popup.append($details[0]);
+ $popup.append($img1[0],$mani[0],$module[0],$price[0],$avai[0],$des[0],$btn[0]);
+
   $popup.classList.toggle("show");
 }
 </script>
+<script >
+	function FunctionRent(i){
+		if ($('#rentbutton').text()==='Rent'){
+		
+		rentaCar(i);
 
+		var $div1 = $('#cars');
+        $div1.html('');
+       for (var i = cars.length-1; i >= 0; i--) {
+          var car = cars[i];
+          var $img= $('<img  id="carimage"  src="'+car.image+'">')
+          var $car = $('<div class ="cardiv" id="'+i+'"onclick="myFunction('+i+')"></div>');
+         
+        	var $mani= $('<h4 id="carMani"> Manufacturer : ' + car.manufacturer+'</h4>');
+        	var $module= $('<h4 id="carModel"> Module : '+ car.module+'</h4>');
+        	var $price= $('<h4 id="carprice"> Price : '+ car.price+'</h4>');
+        	var $avai= $('<h4 id="caravai"> availability : '+ car.availability+'</h4>');
+          $car.append( $img,$mani,$module,$price,$avai);
+          $div1.append($car);
+      }
+         
+
+  
+  
+  
+  
+  $('#caravai1').text('availability false');
+  $('#rentbutton').text('Return');
+ }else{
+ 	returnaCar(i);
+
+		var $div1 = $('#cars');
+        $div1.html('');
+       for (var i = cars.length-1; i >= 0; i--) {
+          var car = cars[i];
+          var $img= $('<img  id="carimage"  src="'+car.image+'">')
+          var $car = $('<div class ="cardiv" id="'+i+'"onclick="myFunction('+i+')"></div>');
+         
+        	var $mani= $('<h4 id="carMani"> Manufacturer    : ' + car.manufacturer+'</h4>');
+        	var $module= $('<h4 id="carModel"> Module  : '+ car.module+'</h4>');
+        	var $price= $('<h4 id="carprice"> Price  : '+ car.price+'</h4>');
+        	var $avai= $('<h4 id="caravai"> availability  : '+ car.availability+'</h4>');
+          $car.append( $img,$mani,$module,$price,$avai);
+          $div1.append($car);
+      }
+         
+
+  
+  
+  
+  
+  $('#caravai1').text('availability true');
+  $('#rentbutton').text('Rent');
+ }
+ 
+
+  
+          
+        } 
+	
+</script>
+<script >
+	function addfunction(){
+		var car0 =Car();
+		var maniinput1=$('#maniinput').val();
+		var moduleinput1=$('#moduleinput').val();
+		var descinput1=$('#descinput').val();
+		var priceinput1=$('#priceinput').val();
+		var imaginput1=$('#imaginput').val();
+		if(maniinput1=== '' || moduleinput1=== '' || descinput1=== '' || priceinput1=== '' || imaginput1=== ''){
+			alert('please fill all the inputs')
+		}else{
+		car0.addCar(maniinput1,moduleinput1,descinput1,priceinput1,imaginput1)
+		cars.push(car0);
+		$('#maniinput').val('');
+		$('#moduleinput').val('');
+		$('#descinput').val('');
+		$('#priceinput').val('');
+		$('#imaginput').val('');
+		var $div1 = $('#cars');
+        $div1.html('');
+       for (var i = cars.length-1; i >= 0; i--) {
+          var car = cars[i];
+          var $img= $('<img  id="carimage"  src="'+car.image+'">')
+          var $car = $('<div class ="cardiv" id="'+i+'"onclick="myFunction('+i+')"></div>');
+         
+        	var $mani= $('<h4 id="carMani"> Manufacturer   :  ' + car.manufacturer+'</h4>');
+        	var $module= $('<h4 id="carModel"> Module  : '+ car.module+'</h4>');
+        	var $price= $('<h4 id="carprice"> Price  : '+ car.price+'</h4>');
+        	var $avai= $('<h4 id="caravai"> availability  : '+ car.availability+'</h4>');
+        	
+          $car.append( $img,$mani,$module,$price,$avai);
+          $div1.append($car);
+          }
+        } 
+	}
+</script>
 </body>
 </html>
