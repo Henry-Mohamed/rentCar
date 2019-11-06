@@ -71,6 +71,10 @@ padding: 10px;
 border-radius: 10px;
 margin: 10px;
 width: 40%;
+height: 550px;
+ position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 grid-template-areas: 
     "photo photo " 
 	"mani mod "  
@@ -87,21 +91,30 @@ grid-template-areas:
 
 #carMani1{
 	grid-area: mani;
+	font-family: monospace;
 }
 #carModel1{
 	grid-area: mod;
+	font-family: monospace;
 }
 #carprice1{
 	grid-area: price;
+	font-family: monospace;
 }
 #caravai1{
 	grid-area: avai;
+	font-family: monospace;
 }
 #cardes1{
 	grid-area: desc;
+	font-family: monospace;
 }
 #rentbutton{
 	grid-area: buttn;
+	background-color: #ededed;
+	width: 300px;
+	height: 40px;
+	border-radius: 10px;
 }
 
 
